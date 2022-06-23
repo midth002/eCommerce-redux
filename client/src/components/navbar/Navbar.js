@@ -14,7 +14,7 @@ const NavbarTop = () => {
                     </Link>
                 </li>
                 <li>{
-                    <a href="/" onclick={() => Auth.logout()}>
+                    <a href="/" onClick={() => Auth.logout()}>
                     logout</a>
                 }</li>
               </ul>
