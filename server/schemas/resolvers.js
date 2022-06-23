@@ -1,5 +1,5 @@
 const { User, Product, Category, Order } = require('../models');
-const { AuthenticationError } = reuqire('apollo-server-express');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
     Query: {
