@@ -50,6 +50,28 @@ const resolvers = {
 
             // throw new AuthenticationError('Not logged in');
         },
+
+        // Checkout session with stripe insert here later on
         
+     },
+
+     addUser: async (parent, args) => {
+        const user = await User.create(args);
+        const token = signToken(user);
+
+        return { token, user };
+     },
+     addOrder: async (parent, { products }, context) => {
+        console.log(context);
+        if (context.user) {
+            const order = new Order({ products });
+            await User.findByIdAndUpdate(context.user._id, { $push: { orders: order }});
+
+            return order;
+        }
+
+        // throw new AuthenticationError('Not logged in');
+
      }
+
 }
