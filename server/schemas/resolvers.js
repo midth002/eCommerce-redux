@@ -1,5 +1,6 @@
 const { User, Product, Category, Order } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
@@ -23,6 +24,9 @@ const resolvers = {
         },
         product: async (parent, { _id}) => {
             return await Product.findById(_id).populate('category');
+        },
+        allUsers: async () => {
+            return User.find({})
         },
         user: async (parent, args, context) => {
             if (context.user) {
